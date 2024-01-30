@@ -1,13 +1,10 @@
 package com.usermanagement.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user/")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -21,6 +18,16 @@ public class UserController {
     @GetMapping("{username}")
     public User getUserByUsername(@PathVariable String username){
         return  userService.getUserByUsername(username);
+    }
+
+    @PostMapping()
+    public User addUser(@RequestBody  User user){
+        return userService.addUser(user);
+    }
+
+    @PutMapping()
+    public User updateUser(@RequestBody  User user){
+        return userService.updateUser(user);
     }
 
 }
