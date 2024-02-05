@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
 
+    //swagger
+    //slflog4j
+
     @Autowired
     UserService userService;
 
