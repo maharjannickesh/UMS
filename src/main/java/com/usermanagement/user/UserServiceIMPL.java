@@ -12,6 +12,7 @@ public class UserServiceIMPL implements UserService {
     @Override
     public User addUser(User user) {
         System.out.println(user.getUserName());
+        //add in database
         return new User(user.getUserid(), user.getUserName(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword());
     }
 
