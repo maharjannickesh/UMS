@@ -12,4 +12,6 @@ public class UmsApplication {
 		SpringApplication.run(UmsApplication.class, args);
 	}
 
+
+
 }
