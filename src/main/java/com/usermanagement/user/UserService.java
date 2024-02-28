@@ -1,5 +1,9 @@
 package com.usermanagement.user;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+@Service
 public interface UserService {
 
     public User getUserByUsername(String username);
