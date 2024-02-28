@@ -1,12 +1,23 @@
 package com.usermanagement.user;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceIMPL implements UserService {
+
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    ModelMapper modelMapper;
+
     @Override
     public User getUserByUsername(String username) {
-        return new User(1, "firstuser", "niraj", "gautam", "nirajgtm@gmail.com","Test@123");
+        UserEntity userEntity = userRepository.findByUserName(username);
+        return modelMapper.map(userEntity, User.class);
     }
 
     @Override
