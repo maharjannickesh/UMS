@@ -4,6 +4,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceIMPL implements UserService {
 
@@ -16,26 +18,26 @@ public class UserServiceIMPL implements UserService {
 
     @Override
     public User getUserByUsername(String username) {
-        UserEntity userEntity = userRepository.findByUserName(username);
+        Optional<UserEntity> userEntity = userRepository.findByUserName(username);
         return modelMapper.map(userEntity, User.class);
     }
 
     @Override
     public User addUser(User user) {
-        System.out.println(user.getUserName());
-        //add in database
-        return new User(user.getUserid(), user.getUserName(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword());
+          return modelMapper.map(userRepository.save(modelMapper.map(user, UserEntity.class)), User.class);
     }
 
     @Override
     public User updateUser(User user) {
-        User updateuser = getUserByUsername(user.getUserName());
-        updateuser.setUserName(user.getUserName());
-        updateuser.setEmail(user.getEmail());
-        updateuser.setPassword(user.getPassword());
-        updateuser.setFirstName("Niraj");
-        updateuser.setLastName("Gautam");
-        return updateuser;
+
+
+        Optional<UserEntity> userEntity = userRepository.findByUserName(user.getUserName());
+
+        if(userEntity.isPresent()){
+         return modelMapper.map(userRepository.save(modelMapper.map(user, UserEntity.class)), User.class);
+        }
+
+        return null;
     }
 
 
