@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Getter
 @Setter
@@ -17,6 +18,7 @@ import lombok.*;
 @Builder
 @Entity
 @Table(name="USER")
+@DynamicUpdate
 public class UserEntity {
 
     @Id
