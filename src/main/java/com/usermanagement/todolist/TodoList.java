@@ -24,8 +24,5 @@ public class TodoList {
 
     private User user;
 
-    //sowmiya
-    // []go to gym
-    // []take dog to walk
 
 }

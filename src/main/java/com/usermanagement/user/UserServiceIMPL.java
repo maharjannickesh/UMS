@@ -4,6 +4,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -19,8 +21,11 @@ public class UserServiceIMPL implements UserService {
     @Override
     public User getUserByUsername(String username) {
         Optional<UserEntity> userEntity = userRepository.findByUserName(username);
-        return modelMapper.map(userEntity, User.class);
-    }
+        if (userEntity.isPresent()){
+            return modelMapper.map(userEntity, User.class);
+        }
+        throw new NoSuchElementException("User "+username+" does not exist in database");
+   }
 
     @Override
     public User addUser(User user) {

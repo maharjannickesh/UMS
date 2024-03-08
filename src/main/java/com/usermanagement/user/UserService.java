@@ -3,6 +3,8 @@ package com.usermanagement.user;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
+
 @Service
 public interface UserService {
 
