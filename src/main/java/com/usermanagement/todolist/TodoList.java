@@ -25,5 +25,4 @@ public class TodoList {
     private User user;
 
 
-
 }

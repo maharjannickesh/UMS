@@ -25,7 +25,7 @@ public class UserServiceIMPL implements UserService {
             return modelMapper.map(userEntity, User.class);
         }
         throw new NoSuchElementException("User "+username+" does not exist in database");
-    }
+   }
 
     @Override
     public User addUser(User user) {
