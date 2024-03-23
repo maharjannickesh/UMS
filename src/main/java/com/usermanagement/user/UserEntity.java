@@ -1,13 +1,9 @@
 package com.usermanagement.user;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -17,24 +13,27 @@ import org.hibernate.annotations.DynamicUpdate;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name="USER")
+@Table(name = "USER")
 @DynamicUpdate
 public class UserEntity {
 
     @Id
-    @Column(name="userid")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "userid")
     private int userid;
 
-    @Column(name="userName")
+    @Column(name = "userName")
+    @Max(2)
     private String userName;
 
-    @Column(name="firstName")
+    @Column(name = "firstName")
     private String firstName;
 
     @Column(name = "lastName")
     private String lastName;
 
     @Column(name = "email")
+    @Email
     private String email;
 
     @Column(name = "password")

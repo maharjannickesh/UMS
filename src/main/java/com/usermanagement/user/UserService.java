@@ -1,18 +1,16 @@
 package com.usermanagement.user;
 
-import org.springframework.stereotype.Component;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.sql.SQLException;
 
 @Service
 public interface UserService {
 
-    public User getUserByUsername(String username);
+    public ResponseEntity<User> getUserByUsername(String username);
 
-    public User addUser(User user);
+    public ResponseEntity<User> addUser(User user);
 
-    public User updateUser(User user);
+    public ResponseEntity<User> updateUser(User user);
 
     //todo for nickesh
     //public User addUser(User user);
