@@ -1,5 +1,9 @@
 package com.usermanagement.user;
 
+
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -7,16 +11,17 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
+@Slf4j
 public class UserController {
-
-    //swagger
-    //slflog4j
 
     @Autowired
     UserService userService;
 
     @GetMapping("test")
     public String testController() {
+
+        log.info("Test Controller Works");
+        log.debug("this Works");
         return "It Works";
     }
 

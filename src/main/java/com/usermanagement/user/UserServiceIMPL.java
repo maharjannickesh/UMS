@@ -1,5 +1,6 @@
 package com.usermanagement.user;
 
+import org.hibernate.NonUniqueResultException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,6 @@ public class UserServiceIMPL implements UserService {
 
     @Override
     public ResponseEntity<User>  updateUser(User user) {
-
 
         Optional<UserEntity> userEntity = userRepository.findByUserName(user.getUserName());
 

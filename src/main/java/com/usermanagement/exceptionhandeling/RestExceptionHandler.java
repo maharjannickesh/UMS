@@ -1,6 +1,7 @@
 package com.usermanagement.exceptionhandeling;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.hibernate.NonUniqueResultException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -14,6 +15,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler
     public ResponseEntity<Object> handlesNoSuchElement(HttpServletRequest request, NoSuchElementException exception) {
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND);
+        errorResponse.setMessage("Error occur while trying to execute URL : " + request.getRequestURI() + " Error : " + exception.getMessage());
+        return buildErrorResponse(errorResponse);
+
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<Object> handlesNoUniqueResultException(HttpServletRequest request, NonUniqueResultException exception) {
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND);
         errorResponse.setMessage("Error occur while trying to execute URL : " + request.getRequestURI() + " Error : " + exception.getMessage());
         return buildErrorResponse(errorResponse);
